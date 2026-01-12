@@ -1,0 +1,195 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pageSubtitle {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+/* Notice */
+.noticeCard {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.noticeContent {
+  padding-top: 24px;
+}
+
+.notice {
+  display: flex;
+  gap: 12px;
+}
+
+.noticeIcon {
+  padding: 8px;
+  border-radius: 10px;
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.noticeTitle {
+  font-weight: 500;
+  color: #92400e;
+}
+
+.noticeText {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #b45309;
+}
+
+/* Templates */
+.templateList {
+  display: grid;
+  gap: 16px;
+}
+
+.templateCard {
+  border: 1px solid #f1f5f9;
+}
+
+.templateContent {
+  padding-top: 24px;
+}
+
+.templateRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.templateInfo {
+  display: flex;
+  gap: 16px;
+}
+
+.iconActive,
+.iconInactive {
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.iconActive {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+
+.iconInactive {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.templateHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.templateTitle {
+  font-weight: 600;
+}
+
+.templateDesc {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.subject {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.templateActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Settings */
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settingDesc {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Placeholder */
+.placeholder {
+  border-style: dashed;
+}
+
+.placeholderContent {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.placeholderIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: #f1f5f9;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+}
+
+.placeholderTitle {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.placeholderText {
+  font-size: 14px;
+  color: #64748b;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Preview */
+.previewDialog {
+  max-width: 768px;
+}
+
+.previewBody {
+  margin-top: 16px;
+}
+
+.previewBox {
+  background: #f8fafc;
+  padding: 24px;
+  border-radius: 12px;
+  font-family: monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.previewNote {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fffbeb;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #b45309;
+}

@@ -1,0 +1,72 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pageSubtitle {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.exportBtn {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .exportBtn {
+    display: inline-flex;
+  }
+}
+
+.addBtn {
+  background: #4f46e5;
+}
+
+/* Table */
+.tableSkeleton {
+  height: 384px;
+  border-radius: 16px;
+}
+
+/* Dialog */
+.dialog {
+  max-width: 448px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Delete */
+.deleteBtn {
+  background: #dc2626;
+}

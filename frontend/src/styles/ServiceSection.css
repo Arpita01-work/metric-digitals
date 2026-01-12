@@ -1,0 +1,198 @@
+/* SERVICES SECTION */
+
+.services {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.services-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* HEADER */
+
+.services-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.services-tag {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f97316;
+  font-weight: 500;
+}
+
+.services-title {
+  margin-top: 16px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+@media (min-width: 768px) {
+  .services-title {
+    font-size: 32px;
+  }
+}
+
+/* GRID */
+
+.services-grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* CARDS */
+
+.service-card {
+  border: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff7ed; /* light orange tint */
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+}
+
+.service-card:hover {
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  transform: translateY(-4px);
+}
+
+/* FEATURED CARD (middle one) */
+
+.service-card--featured {
+  background: #f97316; /* solid orange */
+}
+
+/* CARD CONTENT */
+
+.service-card-content {
+  padding: 32px;
+}
+
+/* ICON */
+
+.service-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  background: #ffedd5; /* soft orange for regular cards */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.service-icon-wrapper--featured {
+  background: #fb923c; /* lighter orange over the solid card */
+}
+
+.service-icon {
+  width: 24px;
+  height: 24px;
+  color: #f97316;
+}
+
+.service-icon--featured {
+  color: #ffffff;
+}
+
+/* TITLE & DESCRIPTION */
+
+.service-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #111827;
+}
+
+.service-title--featured {
+  color: #ffffff;
+}
+
+.service-description {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.service-description--featured {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* LEARN MORE BUTTON INSIDE CARD */
+
+.service-learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f97316;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: gap 0.2s ease;
+}
+
+.service-learn-more--featured {
+  color: #ffffff;
+}
+
+.service-learn-more-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.service-learn-more:hover {
+  gap: 10px;
+}
+
+/* FOOTER BUTTON */
+
+.services-footer {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* This class is applied to the external Button via className */
+
+.services-view-all-btn {
+  border-color: #f97316 !important;
+  color: #f97316 !important;
+  border-radius: 999px !important;
+  padding: 16px 32px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff !important;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.services-view-all-btn:hover {
+  background: #fff7ed !important;
+  transform: translateY(-1px);
+}
+
+.services-view-all-icon {
+  width: 16px;
+  height: 16px;
+}

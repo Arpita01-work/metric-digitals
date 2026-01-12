@@ -1,0 +1,167 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pageSubtitle {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.searchBox {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+}
+
+.searchBox svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.searchBox input {
+  padding-left: 40px;
+}
+
+.selects {
+  display: flex;
+  gap: 12px;
+}
+
+/* Table */
+.tableWrapper {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  overflow: hidden;
+}
+
+.tableHeader {
+  background: #f8fafc;
+}
+
+.tableSkeleton {
+  height: 384px;
+  border-radius: 16px;
+}
+
+.row:hover {
+  background: #f8fafc;
+}
+
+.emptyCell {
+  padding: 48px;
+  text-align: center;
+  color: #64748b;
+}
+
+/* Cells */
+.leadName {
+  font-weight: 500;
+}
+
+.leadEmail {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.message {
+  max-width: 260px;
+  font-size: 14px;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.source,
+.date {
+  font-size: 14px;
+  color: #475569;
+}
+
+/* Action */
+.linkBtn {
+  opacity: 0;
+}
+
+.row:hover .linkBtn {
+  opacity: 1;
+}
+
+/* Service badges */
+.seo {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.ppc {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.social {
+  background: #fce7f3;
+  color: #9d174d;
+}
+.content {
+  background: #fef3c7;
+  color: #92400e;
+}
+.email {
+  background: #d1fae5;
+  color: #065f46;
+}
+.web {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+.branding {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+.analytics {
+  background: #cffafe;
+  color: #155e75;
+}
+.consulting {
+  background: #ffedd5;
+  color: #9a3412;
+}
+.other {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* Status badges */
+.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+.progress {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+.cancelled {
+  background: #f1f5f9;
+  color: #334155;
+}

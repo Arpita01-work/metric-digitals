@@ -1,0 +1,26 @@
+{
+  "name": "LeadNote",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "Reference to the lead"
+    },
+    "content": {
+      "type": "string",
+      "description": "Note content"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author email"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Author display name"
+    }
+  },
+  "required": [
+    "lead_id",
+    "content"
+  ]
+}

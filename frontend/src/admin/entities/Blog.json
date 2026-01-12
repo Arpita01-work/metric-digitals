@@ -1,0 +1,65 @@
+{
+  "name": "Blog",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Blog title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "content": {
+      "type": "string",
+      "description": "Rich text content"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short description"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "Featured image URL"
+    },
+    "meta_title": {
+      "type": "string",
+      "description": "SEO meta title"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "SEO meta description"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Blog tags"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author email"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Author display name"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

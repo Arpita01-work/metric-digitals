@@ -1,0 +1,18 @@
+/* src/components/ui/card.css */
+
+.dm-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  padding: 16px;
+}
+
+.dm-card-header {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.dm-card-content {
+  font-size: 14px;
+  color: var(--text-soft);
+}

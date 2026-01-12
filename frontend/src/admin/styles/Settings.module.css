@@ -1,0 +1,135 @@
+.wrapper {
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.headerSkeleton {
+  width: 200px;
+  height: 32px;
+}
+
+.cardSkeleton {
+  height: 260px;
+  border-radius: 16px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+.saveBtn {
+  background: #4f46e5;
+  display: flex;
+  gap: 8px;
+}
+
+/* Cards */
+.card {
+  border: 1px solid #f1f5f9;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon {
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.indigo {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+
+.violet {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.amber {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* Forms */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.switchGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.switchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.switchRow p {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* SLA */
+.select {
+  width: 200px;
+  margin-top: 8px;
+}
+
+/* Future */
+.dashed {
+  border: 1px dashed #e2e8f0;
+}
+
+.future {
+  text-align: center;
+  padding: 32px;
+}
+
+.futureIcon {
+  width: 64px;
+  height: 64px;
+  background: #f1f5f9;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.future p {
+  color: #64748b;
+  font-size: 14px;
+}

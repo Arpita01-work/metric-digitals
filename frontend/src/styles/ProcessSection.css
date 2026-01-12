@@ -1,0 +1,125 @@
+/* PROCESS SECTION */
+
+.process {
+  padding: 80px 0;
+  background: #f9fafb; /* soft gray background */
+}
+
+.process-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* HEADER */
+
+.process-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.process-tag {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f97316; /* orange */
+  font-weight: 500;
+}
+
+.process-title {
+  margin-top: 16px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+@media (min-width: 768px) {
+  .process-title {
+    font-size: 32px;
+  }
+}
+
+/* GRID */
+
+.process-grid {
+  display: grid;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .process-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* STEP */
+
+.process-step {
+  position: relative;
+  text-align: center;
+}
+
+.process-step-number {
+  font-size: 40px;
+  font-weight: 700;
+  color: #e5e7eb; /* very light gray */
+  margin-bottom: 16px;
+}
+
+/* ICON */
+
+.process-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  margin: -24px auto 24px;
+  border-radius: 20px;
+  background: #ffedd5; /* soft orange background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.process-icon {
+  width: 32px;
+  height: 32px;
+  color: #f97316;
+}
+
+/* TEXT */
+
+.process-step-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.process-step-text {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* CONNECTOR LINE (only between steps on md+) */
+
+.process-connector {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .process-connector {
+    display: block;
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 50%;
+    height: 2px;
+    border-top: 2px dashed #fdba74; /* light orange */
+    transform: translateX(50%);
+  }
+}

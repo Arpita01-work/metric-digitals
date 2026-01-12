@@ -1,0 +1,85 @@
+/* CLIENT LOGOS SECTION */
+
+.client-logos {
+  padding: 24px 0;
+  background: linear-gradient(135deg, #fbbf24, #fb923c);
+  border-radius: 32px;
+  margin: -16px 16px 0;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .client-logos {
+    margin: -16px 24px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .client-logos {
+    margin: -16px 32px 0;
+  }
+}
+
+/* CONTAINER */
+
+.client-logos-container {
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* LOGOS ROW */
+
+.client-logos-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .client-logos-row {
+    gap: 64px;
+  }
+}
+
+/* SINGLE LOGO */
+
+.client-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: default;
+  transition: color 0.2s ease;
+}
+
+.client-logo-item:hover {
+  color: #ffffff;
+}
+
+/* ICON CIRCLE */
+
+.client-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-logo-icon span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* BRAND NAME */
+
+.client-logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}

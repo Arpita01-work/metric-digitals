@@ -1,0 +1,250 @@
+/* Services.css */
+
+/* --- GLOBAL PAGE & CONTAINER STYLES (Matching Portfolio/Header) --- */
+
+.services-page {
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.services-container {
+    max-width: 80rem; /* max-w-7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+}
+@media (min-width: 640px) { /* sm */
+    .services-container {
+        padding-left: 1.5rem; /* sm:px-6 */
+        padding-right: 1.5rem; /* sm:px-6 */
+    }
+}
+@media (min-width: 1024px) { /* lg */
+    .services-container {
+        padding-left: 2rem; /* lg:px-8 */
+        padding-right: 2rem; /* lg:px-8 */
+    }
+}
+
+/* --- HERO SECTION --- */
+
+.services-hero-section {
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem; /* py-20 */
+    background: linear-gradient(135deg, #fffbeb, #ffffff); /* light background gradient */
+    text-align: center;
+}
+
+.services-hero-content {
+    max-width: 60rem; /* max-w-5xl (for text content focus) */
+    margin: 0 auto;
+}
+
+.services-tag {
+    font-size: 0.75rem; /* text-sm */
+    letter-spacing: 0.14em; /* tracking-wider */
+    text-transform: uppercase;
+    color: #F97316; /* text-orange-500 */
+    font-weight: 500;
+}
+
+.services-title {
+    margin-top: 1rem; /* mt-4 */
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem;
+    font-weight: 700; /* font-bold */
+    color: #111827; /* text-gray-900 */
+}
+@media (min-width: 768px) { /* md */
+    .services-title {
+        font-size: 3rem; /* md:text-5xl */
+        line-height: 1.1;
+    }
+}
+
+.services-subtitle {
+    margin-top: 1rem; /* mt-4 */
+    font-size: 1.125rem; /* text-lg */
+    line-height: 1.625; /* leading-relaxed */
+    color: #4B5563; /* text-gray-600 */
+    max-width: 48rem; /* max-w-3xl */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- SERVICES GRID SECTION --- */
+
+.services-grid-section {
+    padding-top: 4rem; /* py-16 */
+    padding-bottom: 6rem; /* py-24 */
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem; /* gap-8 */
+}
+@media (min-width: 768px) { /* md */
+    .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+@media (min-width: 1024px) { /* lg */
+    .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+    }
+}
+
+/* --- SERVICE CARD --- */
+
+.service-card {
+    background-color: #FFFFFF;
+    border: 1px solid #F3F4F6; /* border */
+    border-radius: 1.5rem; /* rounded-3xl */
+    padding: 2rem; /* p-8 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* shadow-md */
+    transition: all 0.3s ease-in-out;
+}
+.service-card:hover {
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1); /* hover:shadow-xl */
+    transform: translateY(-5px); /* hover:translate-y-[-5px] */
+    border-color: #F97316;
+}
+
+.service-icon-wrapper {
+    width: 3.5rem; /* w-14 */
+    height: 3.5rem; /* h-14 */
+    background-color: #FFF7ED; /* bg-orange-50 */
+    border-radius: 1rem; /* rounded-xl */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem; /* mb-6 */
+    transition: background-color 0.3s ease;
+}
+.service-card:hover .service-icon-wrapper {
+    background-color: #F97316; /* group-hover:bg-orange-500 */
+}
+
+.service-icon {
+    width: 1.5rem; /* w-6 */
+    height: 1.5rem; /* h-6 */
+    color: #F97316; /* text-orange-500 */
+    transition: color 0.3s ease;
+}
+.service-card:hover .service-icon {
+    color: #FFFFFF; /* group-hover:text-white */
+}
+
+.service-card-title {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem;
+    font-weight: 700; /* font-bold */
+    color: #111827; /* text-gray-900 */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.service-card-description {
+    color: #4B5563; /* text-gray-600 */
+    line-height: 1.625; /* leading-relaxed */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.service-results {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* gap-2 */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.result-dot {
+    width: 0.5rem; /* w-2 */
+    height: 0.5rem; /* h-2 */
+    background-color: #10B981; /* bg-emerald-500 */
+    border-radius: 9999px; /* rounded-full */
+}
+
+.result-text {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    color: #059669; /* text-emerald-600 */
+}
+
+.service-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* gap-1 */
+    color: #F97316; /* text-orange-500 */
+    font-weight: 600; /* font-semibold */
+    transition: all 0.2s ease;
+    text-decoration: none;
+    margin-top: auto; /* Push to bottom */
+}
+.service-link:hover {
+    color: #EA580C; /* hover:text-orange-600 */
+    transform: translateX(4px);
+}
+
+.service-link-icon {
+    width: 1rem; /* w-4 */
+    height: 1rem; /* h-4 */
+}
+
+/* --- CTA SECTION (Reusing pattern from Footer/Header) --- */
+
+.services-cta-section {
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem; /* py-20 */
+    background-color: #F9FAFB; /* bg-gray-50 */
+}
+
+.services-cta-content {
+    max-width: 45rem; /* max-w-xl (slightly narrower focus) */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-title {
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem; /* mb-4 */
+}
+@media (min-width: 768px) {
+    .cta-title {
+        font-size: 2.25rem; /* md:text-4xl */
+        line-height: 1.1;
+    }
+}
+
+.cta-text {
+    font-size: 1rem; /* text-base */
+    color: #4B5563;
+    margin-bottom: 2rem; /* mb-8 */
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    background-color: #F97316; /* bg-orange-500 */
+    color: #FFFFFF;
+    border-radius: 9999px !important; /* rounded-full */
+    padding: 0.75rem 1.75rem !important; /* py-3 px-7 */
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem; /* gap-2 */
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.cta-button:hover {
+    background-color: #EA580C !important; /* hover:bg-orange-600 */
+    transform: translateY(-2px);
+}
+
+.cta-button-icon {
+    width: 1.25rem; /* w-5 */
+    height: 1.25rem; /* h-5 */
+}

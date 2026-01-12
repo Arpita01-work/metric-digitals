@@ -1,0 +1,64 @@
+{
+  "name": "LeadRequest",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "Reference to the lead"
+    },
+    "lead_name": {
+      "type": "string",
+      "description": "Lead name for display"
+    },
+    "lead_email": {
+      "type": "string",
+      "description": "Lead email for display"
+    },
+    "service": {
+      "type": "string",
+      "enum": [
+        "seo",
+        "ppc",
+        "social_media",
+        "content_marketing",
+        "email_marketing",
+        "web_design",
+        "branding",
+        "analytics",
+        "consulting",
+        "other"
+      ],
+      "description": "Service requested"
+    },
+    "message": {
+      "type": "string",
+      "description": "Request message/details"
+    },
+    "utm_source": {
+      "type": "string",
+      "description": "UTM source"
+    },
+    "utm_campaign": {
+      "type": "string",
+      "description": "UTM campaign"
+    },
+    "utm_medium": {
+      "type": "string",
+      "description": "UTM medium"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending"
+    }
+  },
+  "required": [
+    "lead_id",
+    "service"
+  ]
+}

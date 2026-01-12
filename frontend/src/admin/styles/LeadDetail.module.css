@@ -1,0 +1,177 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #64748b;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+/* Profile */
+.profile {
+  padding-top: 24px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 16px;
+}
+
+.profileName {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.company {
+  color: #64748b;
+}
+
+.infoList {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoRow {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* Status */
+.statusBox {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Status badges */
+.new {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.contacted {
+  background: #fef3c7;
+  color: #92400e;
+}
+.qualified {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.converted {
+  background: #d1fae5;
+  color: #065f46;
+}
+.lost {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* Right column */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timelineDot {
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: #6366f1;
+  border-radius: 50%;
+}
+
+.timelineCard {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* Notes */
+.noteInput {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.empty {
+  text-align: center;
+  color: #64748b;
+}
+
+.block {
+  height: 96px;
+}
+
+/* Skeletons */
+.skeletonGrid {
+  display: grid;
+  gap: 24px;
+}
+
+.cardSkeleton {
+  height: 384px;
+  border-radius: 16px;
+}
+
+.cardSkeletonWide {
+  height: 384px;
+  border-radius: 16px;
+}

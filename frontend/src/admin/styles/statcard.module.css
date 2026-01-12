@@ -1,0 +1,104 @@
+.card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(148, 163, 184, 0.25);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.changeRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.changeText {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.subText {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.positiveIcon {
+  width: 16px;
+  height: 16px;
+  color: #10b981;
+}
+
+.negativeIcon {
+  width: 16px;
+  height: 16px;
+  color: #ef4444;
+}
+
+.positiveText {
+  color: #059669;
+}
+
+.negativeText {
+  color: #dc2626;
+}
+
+.iconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+/* Icon color variants */
+.indigo {
+  background-color: #6366f1;
+}
+
+.green {
+  background-color: #22c55e;
+}
+
+.red {
+  background-color: #ef4444;
+}
+
+.blue {
+  background-color: #3b82f6;
+}

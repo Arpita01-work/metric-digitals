@@ -1,0 +1,37 @@
+{
+  "name": "SystemSettings",
+  "type": "object",
+  "properties": {
+    "business_name": {
+      "type": "string",
+      "description": "Business name"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "Contact email"
+    },
+    "working_hours": {
+      "type": "string",
+      "description": "Working hours"
+    },
+    "response_sla": {
+      "type": "string",
+      "description": "Response SLA"
+    },
+    "auto_email_user_confirmation": {
+      "type": "boolean",
+      "default": true
+    },
+    "auto_email_admin_notification": {
+      "type": "boolean",
+      "default": true
+    },
+    "notification_email": {
+      "type": "string",
+      "description": "Email for notifications"
+    }
+  },
+  "required": [
+    "business_name"
+  ]
+}

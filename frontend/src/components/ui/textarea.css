@@ -1,0 +1,19 @@
+.ui-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.ui-textarea:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+.ui-textarea::placeholder {
+  color: #9ca3af;
+}

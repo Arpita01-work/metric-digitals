@@ -1,0 +1,74 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the lead"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "converted",
+        "lost"
+      ],
+      "default": "new",
+      "description": "Current lead status"
+    },
+    "touch_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of interactions"
+    },
+    "first_contact_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date of first contact"
+    },
+    "last_contacted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date of last interaction"
+    },
+    "lead_source": {
+      "type": "string",
+      "description": "UTM source"
+    },
+    "utm_campaign": {
+      "type": "string",
+      "description": "UTM campaign name"
+    },
+    "utm_medium": {
+      "type": "string",
+      "description": "UTM medium"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Team member email assigned"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "avatar_url": {
+      "type": "string",
+      "description": "Profile image URL"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ]
+}

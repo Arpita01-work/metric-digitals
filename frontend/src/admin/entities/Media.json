@@ -1,0 +1,26 @@
+{
+  "name": "Media",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "File name"
+    },
+    "url": {
+      "type": "string",
+      "description": "File URL"
+    },
+    "type": {
+      "type": "string",
+      "description": "MIME type"
+    },
+    "size": {
+      "type": "number",
+      "description": "File size in bytes"
+    }
+  },
+  "required": [
+    "name",
+    "url"
+  ]
+}

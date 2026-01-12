@@ -1,0 +1,82 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Header */
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.header p {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+/* Stats grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Charts */
+.chartsRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .chartsRow {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.chartLarge {
+  grid-column: span 1;
+}
+
+/* Bottom row */
+.bottomRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .bottomRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Skeleton helpers */
+.skeletonStat {
+  height: 144px;
+  border-radius: 16px;
+}
+
+.skeletonChart {
+  height: 420px;
+  border-radius: 16px;
+}
+
+.skeletonSmall {
+  height: 320px;
+  border-radius: 16px;
+}
