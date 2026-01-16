@@ -3,14 +3,16 @@ import { Button } from "../components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 // Import the custom CSS file
 import '../styles/Header.css'; 
+import { Link } from 'react-router-dom';
 
 const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services"},
-  { name: "Blog", href: "/blog" },
-  { name: "Contact Us", href: "/contact" },
-  { name: "About Us", href: "/about" },
+  { name: "Home", to: "/" },
+  { name: "Services", to: "/services" },
+  { name: "Blog", to: "/blog" },
+  { name: "Contact Us", to: "/contact" },
+  { name: "About Us", to: "/about" },
 ];
+
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,14 +32,14 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="desktop-nav">
             {navItems.map((item, index) => (
-              <a 
+              <Link
                 key={index}
-                href={item.href}
+                to={item.to}
                 className="nav-link"
               >
                 {item.name}
                 {item.hasDropdown && <ChevronDown className="dropdown-icon" />}
-              </a>
+              </Link>
             ))}
           </nav>
           
@@ -67,13 +69,14 @@ export default function Header() {
         <div className="mobile-menu-dropdown">
           <div className="mobile-nav-list">
             {navItems.map((item, index) => (
-              <a 
+              <Link
                 key={index}
-                href={item.href}
+                to={item.to}
                 className="mobile-nav-link"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <Button className="mobile-cta-button">
               Get A Quote
