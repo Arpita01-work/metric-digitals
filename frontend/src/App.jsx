@@ -50,11 +50,11 @@ const App = () => {
         />
 
         <Route
-          path="/contact"
+          path="/services"
           element={
             <>
               <Header />
-              <Contact />
+              <Services />
               <Footer />
             </>
           }
@@ -105,11 +105,11 @@ const App = () => {
         />
 
         <Route
-          path="/services"
+          path="/contact"
           element={
             <>
               <Header />
-              <Services />
+              <Contact />
               <Footer />
             </>
           }
@@ -206,7 +206,7 @@ const App = () => {
           }
         />
 
-        {/* ✅ MUST BE LAST */}
+        {/* ✅ FALLBACK — MUST BE LAST */}
         <Route
           path="*"
           element={
