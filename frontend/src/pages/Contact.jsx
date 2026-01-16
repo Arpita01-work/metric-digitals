@@ -1,7 +1,7 @@
 // src/pages/Contact.jsx
 import React, { useState } from "react";
 import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
+import { Input } from "../admin/components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Card, CardContent } from "../components/ui/card";
 import { Mail, Phone, MapPin, Clock, Send, ArrowRight } from "lucide-react";
@@ -21,7 +21,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Address",
-    details: ["info@vinoma.com", "support@vinoma.com"],
+    details: ["info@metric.com", "support@metric.com"],
   },
   {
     icon: Clock,
@@ -39,10 +39,25 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    alert("Thank you for your message! We will get back to you soon.");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch(
+      "http://localhost:5000/api/contact",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message);
+
+    alert("Message sent successfully!");
+
     setFormData({
       name: "",
       email: "",
@@ -50,7 +65,12 @@ export default function Contact() {
       subject: "",
       message: "",
     });
-  };
+  } catch (err) {
+    console.error(err);
+    alert("Failed to send message");
+  }
+};
+
 
   return (
     <div className="contact-page">

@@ -1,90 +1,80 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-
-/* ---------------- Context ---------------- */
+import { createPortal } from "react-dom";
+import styles from "../../styles/DropdownMenu.module.css";
 
 const DropdownContext = React.createContext();
 
-/* ---------------- Root ---------------- */
-
 function DropdownMenu({ children }) {
   const [open, setOpen] = React.useState(false);
+  const triggerRef = React.useRef(null);
 
   return (
-    <DropdownContext.Provider value={{ open, setOpen }}>
-      <div className="relative inline-block">{children}</div>
+    <DropdownContext.Provider value={{ open, setOpen, triggerRef }}>
+      <div className={styles.root}>{children}</div>
     </DropdownContext.Provider>
   );
 }
 
-/* ---------------- Trigger ---------------- */
-
 function DropdownMenuTrigger({ asChild, children }) {
-  const { open, setOpen } = React.useContext(DropdownContext);
+  const { open, setOpen, triggerRef } = React.useContext(DropdownContext);
 
-  const triggerProps = {
+  const props = {
+    ref: triggerRef,
+    type: "button",
     onClick: () => setOpen(!open),
   };
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, triggerProps);
-  }
-
-  return (
-    <button {...triggerProps}>
-      {children}
-    </button>
-  );
+  return asChild && React.isValidElement(children)
+    ? React.cloneElement(children, props)
+    : <button {...props}>{children}</button>;
 }
 
-/* ---------------- Content ---------------- */
+function DropdownMenuContent({ align = "start", children }) {
+  const { open, triggerRef, setOpen } =
+    React.useContext(DropdownContext);
 
-function DropdownMenuContent({ className, align = "end", children }) {
-  const { open } = React.useContext(DropdownContext);
+  if (!open || !triggerRef.current) return null;
 
-  if (!open) return null;
+  const rect = triggerRef.current.getBoundingClientRect();
 
-  return (
+  const style = {
+    position: "fixed",
+    top: rect.bottom + 6,
+    left: align === "start" ? rect.left : undefined,
+    right:
+      align === "end"
+        ? window.innerWidth - rect.right
+        : undefined,
+    zIndex: 99999,
+  };
+
+  return createPortal(
     <div
-      className={cn(
-        "absolute z-50 mt-2 min-w-[180px] rounded-md border border-slate-200 bg-white p-1 shadow-md",
-        align === "end" ? "right-0" : "left-0",
-        className
-      )}
+      className={styles.content}
+      style={style}
+      onClick={() => setOpen(false)}
     >
       {children}
-    </div>
+    </div>,
+    document.body
   );
 }
 
-/* ---------------- Item ---------------- */
-
-function DropdownMenuItem({ className, children, onClick }) {
-  const { setOpen } = React.useContext(DropdownContext);
-
+function DropdownMenuItem({ children, onClick }) {
   return (
     <button
-      onClick={(e) => {
-        onClick?.(e);
-        setOpen(false);
-      }}
-      className={cn(
-        "flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 transition",
-        className
-      )}
+      type="button"
+      className={styles.item}
+      onClick={onClick}
     >
       {children}
     </button>
   );
 }
 
-/* ---------------- Separator ---------------- */
-
 function DropdownMenuSeparator() {
-  return <div className="my-1 h-px bg-slate-200" />;
+  return <div className={styles.separator} />;
 }
-
-/* ---------------- Exports ---------------- */
 
 export {
   DropdownMenu,

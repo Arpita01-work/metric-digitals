@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from "../components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { ChevronRight, Star } from "lucide-react";
-import Modal from "./Modal";
-import ContactForm from "./ContactForm";
 import '../styles/HeroSection.css'; 
 
 export default function HeroSection() {
     const [open, setOpen] = useState(false); 
+    const navigate = useNavigate();
+
   return (
     <section className="hero-section">
       <div className="hero-container">
@@ -31,14 +32,12 @@ export default function HeroSection() {
             </p>
             
             <div className="hero-actions">
-              <Button className="primary-button group" onClick={() => setOpen(true)}>
+              <Button className="primary-button group" onClick={() => navigate("/contactform")}>
                 Get Started Now
                 <ChevronRight className="button-icon" />
               </Button>
-              <Modal isOpen={open} onClose={() => setOpen(false)}>
-                <ContactForm onSuccess={() => setOpen(false)} />
-              </Modal>
-              <Button variant="ghost" className="secondary-button">
+              <Button variant="ghost" className="secondary-button"
+              onClick = {() => navigate("/about")}>
                 Learn More
               </Button>
             </div>

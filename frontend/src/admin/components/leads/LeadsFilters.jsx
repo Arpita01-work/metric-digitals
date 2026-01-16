@@ -1,80 +1,108 @@
-import React from 'react';
-import { Search, Filter, X } from 'lucide-react';
-import { Input } from '../../components/ui/input';
-import { Button } from '../../components/ui/button';
-import { Badge } from '../../components/ui/badge';
+import React from "react";
+import { Search, X } from "lucide-react";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../../components/ui/select';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '../../components/ui/popover';
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "../../components/ui/dropdown-menu";
 
-export default function LeadFilters({ 
-  search, 
-  onSearchChange, 
-  status, 
+import styles from "../../styles/LeadsFilter.module.css";
+
+export default function LeadFilters({
+  search,
+  onSearchChange,
+  status,
   onStatusChange,
   source,
   onSourceChange,
   sources = [],
-  onClearFilters
+  onClearFilters,
 }) {
-  const hasActiveFilters = status !== 'all' || source !== 'all' || search;
-  
+  const hasActiveFilters = status !== "all" || source !== "all" || search;
+
   return (
-    <div className="flex flex-col sm:flex-row gap-4">
-      <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-        <Input 
-          placeholder="Search by name or email..." 
+    <div className={styles.wrapper}>
+      {/* Search */}
+      <div className={styles.searchWrapper}>
+        <Search className={styles.searchIcon} />
+        <Input
+          placeholder="Search by name or email..."
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-10 bg-white border-slate-200"
+          className={styles.searchInput}
         />
       </div>
-      
-      <div className="flex items-center gap-3">
-        <Select value={status} onValueChange={onStatusChange}>
-          <SelectTrigger className="w-40 bg-white">
-            <SelectValue placeholder="Status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
-            <SelectItem value="new">New</SelectItem>
-            <SelectItem value="contacted">Contacted</SelectItem>
-            <SelectItem value="qualified">Qualified</SelectItem>
-            <SelectItem value="converted">Converted</SelectItem>
-            <SelectItem value="lost">Lost</SelectItem>
-          </SelectContent>
-        </Select>
-        
-        <Select value={source} onValueChange={onSourceChange}>
-          <SelectTrigger className="w-40 bg-white">
-            <SelectValue placeholder="Source" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Sources</SelectItem>
-            {sources.map(s => (
-              <SelectItem key={s} value={s}>{s}</SelectItem>
+
+      {/* Filters */}
+      <div className={styles.filters}>
+        {/* Status Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className={styles.dropdownBtn}>
+              {status === "all"
+                ? "All Status"
+                : status.charAt(0).toUpperCase() + status.slice(1)}
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={() => onStatusChange("all")}>
+              All Status
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onStatusChange("new")}>
+              New
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onStatusChange("contacted")}>
+              Contacted
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onStatusChange("qualified")}>
+              Qualified
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onStatusChange("converted")}>
+              Converted
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onStatusChange("lost")}>
+              Lost
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        {/* Source Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className={styles.dropdownBtn}>
+              {source === "all" ? "All Sources" : source}
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={() => onSourceChange("all")}>
+              All Sources
+            </DropdownMenuItem>
+
+            {sources.map((s) => (
+              <DropdownMenuItem
+                key={s}
+                onClick={() => onSourceChange(s)}
+              >
+                {s}
+              </DropdownMenuItem>
             ))}
-          </SelectContent>
-        </Select>
-        
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        {/* Clear */}
         {hasActiveFilters && (
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="sm"
             onClick={onClearFilters}
-            className="text-slate-500 hover:text-slate-700"
+            className={styles.clearBtn}
           >
-            <X className="w-4 h-4 mr-1" />
+            <X className={styles.clearIcon} />
             Clear
           </Button>
         )}

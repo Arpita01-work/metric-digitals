@@ -1,8 +1,7 @@
-import axiosClient from "./axiosClient";
-
+// requests.api.js
 export const RequestsAPI = {
   getAll: async () => {
-    const res = await axiosClient.get("/requests");
-    return res.data;
-  },
+    const res = await fetch("http://localhost:5000/api/requests");
+    return res.json();
+  }
 };

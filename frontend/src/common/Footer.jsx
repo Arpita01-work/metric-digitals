@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from "react"; // ✅ CHANGED
+import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -6,6 +7,38 @@ import { Input } from "../components/ui/input";
 import '../styles/Footer.css'; 
 
 export default function Footer() {
+    // ✅ NEW STATE
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // ✅ NEW HANDLER
+  const handleNewsletterSubscribe = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("http://localhost:5000/api/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: newsletterEmail }),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("SERVER RESPONSE:", errorText);
+      throw new Error("Request failed");
+    }
+
+    const data = await res.json();
+    alert("Subscribed successfully! Check your email 📧");
+    setNewsletterEmail("");
+  } catch (err) {
+    console.error(err);
+    alert("Subscription failed");
+  }
+};
+
+  
+
   return (
     <footer className="main-footer">
       <div className="footer-container">
@@ -15,9 +48,9 @@ export default function Footer() {
           <div className="footer-section company-info">
             <div className="footer-logo-group">
               <div className="logo-icon-wrapper">
-                <span className="logo-icon-text">V</span>
+                <span className="logo-icon-text">M</span>
               </div>
-              <span className="logo-text">VinoMa</span>
+              <span className="logo-text">Metric</span>
             </div>
             <p className="company-description">
               Unlock the power of SEO to drive growth, boost visibility, and achieve lasting success with our expert strategies.
@@ -42,13 +75,18 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-heading">Quick Links</h3>
             <ul className="footer-list">
-              {["About Us", "Services", "Portfolio", "Blog", "Contact"].map((item, index) => (
-                <li key={index}>
-                  <a href="#" className="footer-link">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link to="/about" className="footer-link">About Us</Link>
+              </li>
+              <li>
+                <Link to="/services" className="footer-link">Services</Link>
+              </li>
+              <li>
+                <Link to="/blog" className="footer-link">Blog</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="footer-link">Contact</Link>
+              </li>
             </ul>
           </div>
           
@@ -56,31 +94,49 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-heading">Services</h3>
             <ul className="footer-list">
-              {["SEO Optimization", "Content Marketing", "Social Media", "Email Marketing", "PPC Campaigns"].map((item, index) => (
-                <li key={index}>
-                  <a href="#" className="footer-link">
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link to="/contactform" className="footer-link">SEO Optimization</Link>
+              </li>
+              <li>
+                <Link to="/contactform" className="footer-link">Content Marketing</Link>
+              </li>
+              <li>
+                <Link to="/contactform" className="footer-link">Social Media</Link>
+              </li>
+              <li>
+                <Link to="/contactform" className="footer-link">Email Marketing</Link>
+              </li>
+              <li>
+                <Link to="/contactform" className="footer-link">PPC Campaigns</Link>
+              </li>
             </ul>
           </div>
-          
           {/* Newsletter / Contact */}
           <div className="footer-section">
             <h3 className="footer-heading">Newsletter</h3>
             <p className="newsletter-text">
               Subscribe to get the latest news and updates.
             </p>
-            <div className="newsletter-form">
-              <Input 
-                placeholder="Your email" 
+
+            {/* ✅ CONNECTED FORM */}
+            <form className="newsletter-form" onSubmit={handleNewsletterSubscribe}>
+              <Input
+                placeholder="Your email"
                 className="newsletter-input"
+                type="email"
+                required
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
               />
-              <Button className="subscribe-button">
+              <Button
+                type="submit"
+                className="subscribe-button"
+                disabled={loading}
+              >
                 <Mail className="subscribe-icon" />
               </Button>
-            </div>
+            </form>
+
             
             <div className="contact-info-group">
               <div className="contact-item">
@@ -89,7 +145,7 @@ export default function Footer() {
               </div>
               <div className="contact-item">
                 <Mail className="contact-icon" />
-                <span>info@vinoma.com</span>
+                <span>info@metric.com</span>
               </div>
               <div className="contact-item">
                 <MapPin className="contact-icon" />
@@ -101,7 +157,7 @@ export default function Footer() {
         
         {/* Bottom Bar */}
         <div className="footer-bottom-bar">
-          <p>© 2024 VinoMa. All rights reserved.</p>
+          <p>© 2024 Metric. All rights reserved.</p>
         </div>
       </div>
     </footer>

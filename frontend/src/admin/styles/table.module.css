@@ -1,0 +1,51 @@
+/* Wrapper */
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  caption-side: bottom;
+  font-size: 14px;
+}
+
+/* Header */
+.header {
+  border-bottom: 1px solid #e2e8f0; /* slate-200 */
+}
+
+/* Body */
+.body tr:last-child {
+  border-bottom: none;
+}
+
+/* Row */
+.row {
+  border-bottom: 1px solid #f1f5f9; /* slate-100 */
+  transition: background-color 0.15s ease;
+}
+
+.row:hover {
+  background-color: #f8fafc; /* slate-50 */
+}
+
+/* Head Cell */
+.head {
+  height: 48px;
+  padding: 0 16px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 500;
+  color: #475569; /* slate-600 */
+}
+
+/* Data Cell */
+.cell {
+  padding: 16px;
+  vertical-align: middle;
+  color: #334155; /* slate-700 */
+}

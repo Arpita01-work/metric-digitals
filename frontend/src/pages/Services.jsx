@@ -75,10 +75,6 @@ export default function Services() {
                   <div className="result-dot"></div>
                   <span className="result-text">{service.results}</span>
                 </div>
-                <a href="#" className="service-link">
-                  Learn More 
-                  <ChevronRight className="service-link-icon" />
-                </a>
               </div>
             ))}
           </div>

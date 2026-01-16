@@ -6,11 +6,10 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
 } from "recharts";
 import styles from "../../styles/LeadsChart.module.css";
 
-/* ---------- Custom Tooltip ---------- */
+/* ---------- Tooltip ---------- */
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -25,62 +24,58 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-/* ---------- Main Component ---------- */
 export default function LeadSourcesChart({ data = [] }) {
+  const chartData =
+    Array.isArray(data) && data.length > 0
+      ? data
+      : [{ source: "No Data", count: 1 }];
+
   return (
     <div className={styles.card}>
       <h3 className={styles.title}>Leads by Source</h3>
 
-      {data.length === 0 ? (
-        <div className={styles.emptyState}>
-          No source data available
-        </div>
-      ) : (
-        <div className={styles.chartWrapper}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={data}
-              layout="vertical"
-              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-            >
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="#f1f5f9"
-                horizontal
-                vertical={false}
-              />
+      <div className={styles.chartWrapper}>
+        {/* 🔥 FIXED SIZE BAR CHART */}
+        <BarChart
+          width={420}
+          height={280}
+          data={chartData}
+          layout="vertical"
+          margin={{ top: 10, right: 20, left: 40, bottom: 10 }}
+        >
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke="#f1f5f9"
+            horizontal
+            vertical={false}
+          />
 
-              <XAxis
-                type="number"
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: "#94a3b8", fontSize: 12 }}
-              />
+          <XAxis
+            type="number"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#94a3b8", fontSize: 12 }}
+          />
 
-              <YAxis
-                type="category"
-                dataKey="source"
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: "#64748b", fontSize: 12 }}
-                width={100}
-              />
+          <YAxis
+            type="category"
+            dataKey="source"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#64748b", fontSize: 12 }}
+            width={120}
+          />
 
-              <Tooltip
-                content={<CustomTooltip />}
-                cursor={{ fill: "#f1f5f9" }}
-              />
+          <Tooltip content={<CustomTooltip />} />
 
-              <Bar
-                dataKey="count"
-                fill="#6366f1"
-                radius={[0, 6, 6, 0]}
-                barSize={24}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      )}
+          <Bar
+            dataKey="count"
+            fill="#6366f1"
+            radius={[0, 6, 6, 0]}
+            barSize={22}
+          />
+        </BarChart>
+      </div>
     </div>
   );
 }

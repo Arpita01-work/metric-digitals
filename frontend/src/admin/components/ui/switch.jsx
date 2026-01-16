@@ -1,8 +1,8 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
+import styles from "../../styles/Switch.module.css";
 
 const Switch = React.forwardRef(
-  ({ checked, onCheckedChange, className }, ref) => {
+  ({ checked, onCheckedChange, className = "" }, ref) => {
     return (
       <button
         ref={ref}
@@ -10,17 +10,14 @@ const Switch = React.forwardRef(
         role="switch"
         aria-checked={checked}
         onClick={() => onCheckedChange?.(!checked)}
-        className={cn(
-          "relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500",
-          checked ? "bg-indigo-600" : "bg-slate-200",
-          className
-        )}
+        className={`${styles.switch} ${
+          checked ? styles.checked : styles.unchecked
+        } ${className}`}
       >
         <span
-          className={cn(
-            "inline-block h-4 w-4 transform rounded-full bg-white transition-transform",
-            checked ? "translate-x-6" : "translate-x-1"
-          )}
+          className={`${styles.thumb} ${
+            checked ? styles.thumbChecked : styles.thumbUnchecked
+          }`}
         />
       </button>
     );

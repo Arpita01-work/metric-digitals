@@ -90,6 +90,7 @@
     transition-property: color; /* transition-colors */
     transition-duration: 0.15s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
 }
 .nav-link:hover {
     color: #F97316; /* hover:text-orange-500 */

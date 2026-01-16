@@ -1,0 +1,48 @@
+.root {
+  position: relative;
+  display: inline-block;
+  overflow: visible; /* 🔥 REQUIRED so menu is not clipped */
+}
+
+.content {
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  min-width: 180px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* ensure it floats above content */
+}
+
+.start {
+  left: 0;
+}
+
+.end {
+  right: 0;
+}
+
+.item {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #334155;
+  background: none;
+  border: none;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #f1f5f9;
+}
+
+.separator {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}

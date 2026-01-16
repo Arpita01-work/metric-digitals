@@ -1,340 +1,223 @@
-import React, { useState, useEffect } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
-import ReactQuill from "react-quill";
-import { ArrowLeft, Eye, Image as ImageIcon, X } from "lucide-react";
-import { formatISO } from "date-fns";
-
-import {
-  Input,
-  Textarea,
-  Button,
-  Label,
-  Badge,
-  Skeleton,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "../components/ui";
-
-import { BlogAPI } from "../../api/blog.api";
-import { MediaAPI } from "../../api/media.api";
-import { createPageUrl } from "../lib/utils";
-import { toast } from "sonner";
+import React, { useState, useRef } from "react";
 import styles from "../styles/BlogEditor.module.css";
+import { useNavigate } from "react-router-dom";
+import { BlogAPI } from "../../api/blogApi";
 
-export default function BlogEditor() {
-  const blogId = new URLSearchParams(window.location.search).get("id");
-  const isEditing = Boolean(blogId);
+const BlogEditor = () => {
+  const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
-  const queryClient = useQueryClient();
+  const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
+  const [content, setContent] = useState("");
+  const [excerpt, setExcerpt] = useState(
+    "Discover the top SEO strategies to improve your website rankings."
+  );
 
-  const [formData, setFormData] = useState({
-    title: "",
-    slug: "",
-    content: "",
-    excerpt: "",
-    featured_image: "",
-    meta_title: "",
-    meta_description: "",
-    tags: [],
-    status: "draft",
-  });
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
 
-  const [newTag, setNewTag] = useState("");
-  const [showMediaDialog, setShowMediaDialog] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [tags, setTags] = useState(["SEO", "Digital Marketing", "2025"]);
+  const [tagInput, setTagInput] = useState("");
 
-  /* ---------- Fetch Blog ---------- */
-  const { data: blog, isLoading } = useQuery({
-    queryKey: ["blog", blogId],
-    queryFn: () => BlogAPI.getById(blogId),
-    enabled: isEditing,
-  });
+  // 🔴 IMPORTANT: SEPARATE FILE & PREVIEW
+  const [featuredImage, setFeaturedImage] = useState(null); // FILE
+  const [imagePreview, setImagePreview] = useState(null);   // BLOB URL
 
-  /* ---------- Fetch Media ---------- */
-  const { data: mediaFiles = [] } = useQuery({
-    queryKey: ["media"],
-    queryFn: MediaAPI.list,
-  });
+  /* ===============================
+     IMAGE HANDLERS
+  =============================== */
+  const handleImageSelect = (file) => {
+    if (!file) return;
 
-  useEffect(() => {
-    if (blog) {
-      setFormData({
-        title: blog.title || "",
-        slug: blog.slug || "",
-        content: blog.content || "",
-        excerpt: blog.excerpt || "",
-        featured_image: blog.featured_image || "",
-        meta_title: blog.meta_title || "",
-        meta_description: blog.meta_description || "",
-        tags: blog.tags || [],
-        status: blog.status || "draft",
-      });
-    }
-  }, [blog]);
-
-  /* ---------- Save Blog ---------- */
-  const saveMutation = useMutation({
-    mutationFn: (payload) =>
-      isEditing
-        ? BlogAPI.update(blogId, payload)
-        : BlogAPI.create(payload),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries(["blogs"]);
-      toast.success(isEditing ? "Blog updated" : "Blog created");
-      window.location.href = createPageUrl("Blogs");
-    },
-  });
-
-  const handleChange = (field, value) => {
-    setFormData((p) => ({ ...p, [field]: value }));
-
-    if (field === "title" && !isEditing) {
-      setFormData((p) => ({
-        ...p,
-        slug: value
-          .toLowerCase()
-          .replace(/[^a-z0-9\s-]/g, "")
-          .replace(/\s+/g, "-")
-          .replace(/-+/g, "-")
-          .trim(),
-      }));
-    }
+    setFeaturedImage(file); // ✅ FILE ONLY
+    setImagePreview(URL.createObjectURL(file)); // ✅ PREVIEW ONLY
   };
 
-  const handleSave = (status) => {
-    if (!formData.title.trim()) {
-      toast.error("Title is required");
-      return;
-    }
-
-    saveMutation.mutate({
-      ...formData,
-      status,
-      published_date:
-        status === "published" && !blog?.published_date
-          ? formatISO(new Date())
-          : blog?.published_date,
-    });
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    handleImageSelect(file);
   };
 
-  /* ---------- Upload Image ---------- */
-  const handleImageUpload = async (file) => {
-    setUploading(true);
-    try {
-      const res = await MediaAPI.upload(file);
-      setFormData((p) => ({
-        ...p,
-        featured_image: res.url,
-      }));
-    } catch {
-      toast.error("Image upload failed");
-    } finally {
-      setUploading(false);
-    }
-  };
+  /* ===============================
+     SAVE BLOG
+  =============================== */
+  const handleSave = async (status) => {
+    const formData = new FormData();
 
-  if (isEditing && isLoading) {
-    return (
-      <div className={styles.wrapper}>
-        <Skeleton className={styles.titleSkeleton} />
-        <Skeleton className={styles.editorSkeleton} />
-      </div>
+    formData.append("title", title);
+    formData.append("slug", slug);
+    formData.append("content", content);
+    formData.append("excerpt", excerpt);
+    formData.append("status", status);
+    formData.append("tags", JSON.stringify(tags));
+    formData.append(
+      "seo",
+      JSON.stringify({
+        meta_title: metaTitle,
+        meta_description: metaDescription,
+      })
     );
-  }
+
+    // ✅ SEND ONLY FILE
+    if (featuredImage instanceof File) {
+      formData.append("featured_image", featuredImage);
+    }
+
+    await BlogAPI.create(formData);
+    navigate("admin/blogs");
+  };
+
+  /* ===============================
+     TAG HANDLERS
+  =============================== */
+  const addTag = () => {
+    const trimmed = tagInput.trim();
+    if (!trimmed || tags.includes(trimmed)) return;
+    setTags([...tags, trimmed]);
+    setTagInput("");
+  };
+
+  const removeTag = (tag) => {
+    setTags(tags.filter((t) => t !== tag));
+  };
+
+  const handleTagKey = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTag();
+    }
+  };
 
   return (
-    <div className={styles.wrapper}>
-      {/* Header */}
+    <div className={styles.page}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
-          <Button variant="ghost" size="icon" asChild>
-            <Link to={createPageUrl("Blogs")}>
-              <ArrowLeft />
-            </Link>
-          </Button>
-          <h1 className={styles.pageTitle}>
-            {isEditing ? "Edit Blog" : "New Blog"}
-          </h1>
+          <span className={styles.backArrow} onClick={() => navigate("../admin/blogs")}>
+            ←
+          </span>
+          <h2>Edit Blog</h2>
         </div>
 
-        <div className={styles.headerActions}>
-          <Button
-            variant="outline"
-            onClick={() => handleSave("draft")}
-            disabled={saveMutation.isPending}
-          >
+        <div className={styles.headerRight}>
+          <button className={styles.draftBtn} onClick={() => handleSave("draft")}>
             Save Draft
-          </Button>
-          <Button
-            onClick={() => handleSave("published")}
-            disabled={saveMutation.isPending}
+          </button>
+          <button
             className={styles.publishBtn}
+            onClick={() => handleSave("published")}
           >
-            <Eye /> Publish
-          </Button>
+            Publish
+          </button>
         </div>
       </div>
 
-      <div className={styles.grid}>
-        {/* Main */}
-        <div className={styles.main}>
-          <Card>
-            <CardContent className={styles.formCard}>
-              <Field label="Title">
-                <Input
-                  value={formData.title}
-                  onChange={(e) => handleChange("title", e.target.value)}
-                />
-              </Field>
+      <div className={styles.layout}>
+        <div className={styles.left}>
+          <div className={styles.card}>
+            <label>Title</label>
+            <input value={title} onChange={(e) => setTitle(e.target.value)} />
 
-              <Field label="Slug">
-                <Input
-                  value={formData.slug}
-                  onChange={(e) => handleChange("slug", e.target.value)}
-                />
-              </Field>
+            <label>Slug</label>
+            <input value={slug} onChange={(e) => setSlug(e.target.value)} />
 
-              <Field label="Content">
-                <ReactQuill
-                  theme="snow"
-                  value={formData.content}
-                  onChange={(v) => handleChange("content", v)}
-                />
-              </Field>
-            </CardContent>
-          </Card>
+            <label>Content</label>
+            <textarea value={content} onChange={(e) => setContent(e.target.value)} />
+          </div>
         </div>
 
-        {/* Sidebar */}
-        <div className={styles.sidebar}>
-          <Card>
-            <CardHeader>
-              <CardTitle>Featured Image</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {formData.featured_image ? (
-                <div className={styles.imagePreview}>
-                  <img src={formData.featured_image} alt="" />
-                  <Button
-                    size="icon"
-                    variant="secondary"
-                    onClick={() => handleChange("featured_image", "")}
-                  >
-                    <X />
-                  </Button>
-                </div>
-              ) : (
-                <label className={styles.uploadBox}>
-                  <ImageIcon />
-                  <span>{uploading ? "Uploading…" : "Upload Image"}</span>
-                  <input
-                    type="file"
-                    hidden
-                    onChange={(e) =>
-                      e.target.files && handleImageUpload(e.target.files[0])
-                    }
-                  />
-                </label>
-              )}
-            </CardContent>
-          </Card>
+        <div className={styles.right}>
+          <div className={styles.card}>
+            <h4>Featured Image</h4>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Excerpt</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Textarea
-                value={formData.excerpt}
-                onChange={(e) => handleChange("excerpt", e.target.value)}
-              />
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Tags</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className={styles.tagInput}>
-                <Input
-                  value={newTag}
-                  onChange={(e) => setNewTag(e.target.value)}
-                />
-                <Button
-                  variant="outline"
+            {imagePreview ? (
+              <div className={styles.imagePreview}>
+                <img src={imagePreview} alt="Featured" />
+                <button
+                  className={styles.removeImage}
                   onClick={() => {
-                    if (newTag && !formData.tags.includes(newTag)) {
-                      setFormData((p) => ({
-                        ...p,
-                        tags: [...p.tags, newTag],
-                      }));
-                      setNewTag("");
-                    }
+                    setFeaturedImage(null);
+                    setImagePreview(null);
                   }}
                 >
-                  Add
-                </Button>
+                  ×
+                </button>
               </div>
+            ) : (
+              <>
+                <div
+                  className={styles.uploadBox}
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  <span>Upload Image</span>
+                </div>
+                <button
+                  className={styles.mediaBtn}
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  Choose from Media
+                </button>
+              </>
+            )}
 
-              <div className={styles.tagList}>
-                {formData.tags.map((t) => (
-                  <Badge
-                    key={t}
-                    onClick={() =>
-                      setFormData((p) => ({
-                        ...p,
-                        tags: p.tags.filter((x) => x !== t),
-                      }))
-                    }
-                  >
-                    {t} ×
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              hidden
+              onChange={handleFileChange}
+            />
+          </div>
+
+          <div className={styles.card}>
+            <h4>Excerpt</h4>
+            <textarea
+              value={excerpt}
+              onChange={(e) => setExcerpt(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.card}>
+            <h4>Tags</h4>
+
+            <div className={styles.tagInput}>
+              <input
+                type="text"
+                placeholder="Add tag"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={handleTagKey}
+              />
+              <button onClick={addTag}>Add</button>
+            </div>
+
+            <div className={styles.tags}>
+              {tags.map((tag) => (
+                <span key={tag} onClick={() => removeTag(tag)}>
+                  {tag} ×
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.card}>
+            <h4>SEO Settings</h4>
+
+            <label>Meta Title</label>
+            <input
+              value={metaTitle}
+              onChange={(e) => setMetaTitle(e.target.value)}
+            />
+            <label>Meta Description</label>
+            <textarea
+              value={metaDescription}
+              onChange={(e) => setMetaDescription(e.target.value)}
+            />
+          </div>
         </div>
       </div>
-
-      {/* Media Dialog */}
-      <Dialog open={showMediaDialog} onOpenChange={setShowMediaDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Select Image</DialogTitle>
-          </DialogHeader>
-          <div className={styles.mediaGrid}>
-            {mediaFiles.map((f) => (
-              <button
-                key={f.id}
-                onClick={() => {
-                  handleChange("featured_image", f.url);
-                  setShowMediaDialog(false);
-                }}
-              >
-                <img src={f.url} alt={f.name} />
-              </button>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
-}
+};
 
-function Field({ label, children }) {
-  return (
-    <div className={styles.field}>
-      <Label>{label}</Label>
-      {children}
-    </div>
-  );
-}
+export default BlogEditor;

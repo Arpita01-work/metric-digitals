@@ -1,0 +1,35 @@
+.select {
+  display: inline-block;
+}
+
+.trigger {
+  border: 1px solid #e5e7eb;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+.trigger:hover {
+  background: #f8fafc;
+}
+
+.content {
+  margin-top: 4px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: white;
+}
+
+.item {
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #f1f5f9;
+}
+
+.value {
+  color: #0f172a;
+}

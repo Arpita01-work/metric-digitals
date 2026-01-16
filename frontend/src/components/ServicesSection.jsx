@@ -89,16 +89,7 @@ export default function ServicesSection() {
                     {service.description}
                   </p>
 
-                  <button
-                    className={`service-learn-more ${
-                      service.featured
-                        ? "service-learn-more--featured"
-                        : ""
-                    }`}
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="service-learn-more-icon" />
-                  </button>
+                  
                 </CardContent>
               </Card>
             );

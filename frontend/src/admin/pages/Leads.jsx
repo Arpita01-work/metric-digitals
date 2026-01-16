@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import { Skeleton } from "../components/ui/skeleton";
 import LeadsTable from "../components/leads/LeadsTable";
 import LeadFilters from "../components/leads/LeadsFilters";
+import { Input} from "../components/ui/input";
 import {
   Dialog,
   DialogContent,

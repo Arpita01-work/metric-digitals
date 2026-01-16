@@ -62,6 +62,7 @@
     font-weight: 700; /* font-bold */
     color: #111827; /* text-gray-900 */
     line-height: 1.25; /* leading-tight */
+    overflow: hidden;
 }
 @media (min-width: 640px) { /* sm */
     .content-title {
@@ -95,11 +96,14 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem; /* mb-2 */
+    margin-top: 0.5rem; /* mb-2 */
+
 }
 
 .progress-label {
     color: #374151; /* text-gray-700 */
     font-weight: 500; /* font-medium */
+    
 }
 
 .progress-percentage {

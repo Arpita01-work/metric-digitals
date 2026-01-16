@@ -121,7 +121,7 @@
 }
 
 .service-title--featured {
-  color: #ffffff;
+  color: #111827;
 }
 
 .service-description {
@@ -132,7 +132,7 @@
 }
 
 .service-description--featured {
-  color: rgba(255, 255, 255, 0.85);
+  color: #4b5563;
 }
 
 /* LEARN MORE BUTTON INSIDE CARD */
@@ -151,8 +151,22 @@
   transition: gap 0.2s ease;
 }
 
+.service-learn-more :hover {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: #f97316;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  transition: gap 0.2s ease;
+}
+
 .service-learn-more--featured {
-  color: #ffffff;
+  color: #f97316;
 }
 
 .service-learn-more-icon {

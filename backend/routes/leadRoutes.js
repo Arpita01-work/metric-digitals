@@ -1,15 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const { createLead } = require("../controllers/leadController");
 
-/* Leads */
+console.log("🔥 leadRoutes loaded");
+
+/* GET Leads */
 router.get("/leads", async (req, res) => {
-  // fetch leads from DB
   res.json([]);
 });
 
-/* Lead Requests */
+/* ✅ REAL LOGIC CO NNECTED */
+router.post("/leads", createLead);
+
+/* GET Lead Requests */
 router.get("/lead-requests", async (req, res) => {
-  // fetch lead requests from DB
   res.json([]);
 });
 

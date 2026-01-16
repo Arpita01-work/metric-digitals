@@ -57,11 +57,6 @@ export default function StatsSection() {
                 </div>
               ))}
             </div>
-            
-            <Button className="cta-button group">
-              Get A Quote
-              <ChevronRight className="button-icon" />
-            </Button>
           </div>
           
           {/* Right Content - Stats */}

@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-top: 40px;
+  width: 100%;
+  min-width: 0;         /* 🔥 PREVENT HORIZONTAL SCROLL */
 }
 
 /* Header */
@@ -19,13 +22,19 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
+  overflow: visible;   /* ✅ REQUIRED */
+}
+
+.selects {
+  overflow: visible;
 }
 
 .searchBox {
   position: relative;
   flex: 1;
   max-width: 420px;
+  margin-right: 500px;
 }
 
 .searchBox svg {
@@ -50,8 +59,12 @@
   background: white;
   border-radius: 16px;
   border: 1px solid #f1f5f9;
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;     /* ✅ */
+  overflow-y: hidden;
 }
+
 
 .tableHeader {
   background: #f8fafc;

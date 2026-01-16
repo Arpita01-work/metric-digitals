@@ -1,13 +1,13 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
+import styles from "../../styles/table.module.css";
 
 /* ---------------- Table ---------------- */
 
-const Table = React.forwardRef(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
+const Table = React.forwardRef(({ className = "", ...props }, ref) => (
+  <div className={styles.wrapper}>
     <table
       ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={`${styles.table} ${className}`}
       {...props}
     />
   </div>
@@ -16,10 +16,10 @@ Table.displayName = "Table";
 
 /* ---------------- Header ---------------- */
 
-const TableHeader = React.forwardRef(({ className, ...props }, ref) => (
+const TableHeader = React.forwardRef(({ className = "", ...props }, ref) => (
   <thead
     ref={ref}
-    className={cn("border-b border-slate-200", className)}
+    className={`${styles.header} ${className}`}
     {...props}
   />
 ));
@@ -27,10 +27,10 @@ TableHeader.displayName = "TableHeader";
 
 /* ---------------- Body ---------------- */
 
-const TableBody = React.forwardRef(({ className, ...props }, ref) => (
+const TableBody = React.forwardRef(({ className = "", ...props }, ref) => (
   <tbody
     ref={ref}
-    className={cn("[&_tr:last-child]:border-0", className)}
+    className={`${styles.body} ${className}`}
     {...props}
   />
 ));
@@ -38,13 +38,10 @@ TableBody.displayName = "TableBody";
 
 /* ---------------- Row ---------------- */
 
-const TableRow = React.forwardRef(({ className, ...props }, ref) => (
+const TableRow = React.forwardRef(({ className = "", ...props }, ref) => (
   <tr
     ref={ref}
-    className={cn(
-      "border-b border-slate-100 transition-colors hover:bg-slate-50",
-      className
-    )}
+    className={`${styles.row} ${className}`}
     {...props}
   />
 ));
@@ -52,13 +49,10 @@ TableRow.displayName = "TableRow";
 
 /* ---------------- Head Cell ---------------- */
 
-const TableHead = React.forwardRef(({ className, ...props }, ref) => (
+const TableHead = React.forwardRef(({ className = "", ...props }, ref) => (
   <th
     ref={ref}
-    className={cn(
-      "h-12 px-4 text-left align-middle font-medium text-slate-600",
-      className
-    )}
+    className={`${styles.head} ${className}`}
     {...props}
   />
 ));
@@ -66,10 +60,10 @@ TableHead.displayName = "TableHead";
 
 /* ---------------- Data Cell ---------------- */
 
-const TableCell = React.forwardRef(({ className, ...props }, ref) => (
+const TableCell = React.forwardRef(({ className = "", ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("p-4 align-middle text-slate-700", className)}
+    className={`${styles.cell} ${className}`}
     {...props}
   />
 ));

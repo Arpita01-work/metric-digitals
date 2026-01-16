@@ -1,7 +1,9 @@
+import styles from "../../styles/skeleton.module.css";
+
 export function Skeleton({ className = "" }) {
   return (
     <div
-      className={`animate-pulse rounded-md bg-gray-200 ${className}`}
+      className={`${styles.skeleton} ${className}`}
     />
   );
 }

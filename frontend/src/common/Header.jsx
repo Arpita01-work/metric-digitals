@@ -6,11 +6,10 @@ import '../styles/Header.css';
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Portfolios", href: "/portfolios", hasDropdown: true },
+  { name: "Services", href: "/services"},
   { name: "Blog", href: "/blog" },
   { name: "Contact Us", href: "/contact" },
-  { name: "Services", href: "/services"},
+  { name: "About Us", href: "/about" },
 ];
 
 export default function Header() {
@@ -23,9 +22,9 @@ export default function Header() {
           {/* Logo */}
           <div className="header-logo-group">
             <div className="logo-icon-wrapper">
-              <span className="logo-icon-text">V</span>
+              <span className="logo-icon-text">M</span>
             </div>
-            <span className="logo-text">VinoMa</span>
+            <span className="logo-text">Metric</span>
           </div>
           
           {/* Desktop Navigation */}

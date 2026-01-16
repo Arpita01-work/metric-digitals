@@ -50,6 +50,7 @@
     font-weight: 700; /* font-bold */
     color: #111827; /* text-gray-900 */
     margin-top: 1rem; /* mt-4 */
+    overflow: hidden;
 }
 @media (min-width: 640px) { /* sm */
     .section-title {

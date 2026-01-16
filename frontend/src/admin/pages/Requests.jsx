@@ -10,6 +10,7 @@ import { Input } from "../components/ui/input";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Skeleton } from "../components/ui/skeleton";
+
 import {
   Table,
   TableBody,
@@ -18,13 +19,13 @@ import {
   TableHeader,
   TableRow,
 } from "../components/ui/table";
+
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../components/ui/select";
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "../components/ui/dropdown-menu";
 
 import styles from "../styles/Requests.module.css";
 
@@ -114,33 +115,57 @@ export default function Requests() {
         </div>
 
         <div className={styles.selects}>
-          <Select value={serviceFilter} onValueChange={setServiceFilter}>
-            <SelectTrigger>
-              <SelectValue placeholder="All Services" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Services</SelectItem>
-              {Object.entries(serviceLabels).map(([key, label]) => (
-                <SelectItem key={key} value={key}>
-                  {label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {/* Service Filter */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {serviceFilter === "all"
+                  ? "All Services"
+                  : serviceLabels[serviceFilter]}
+              </Button>
+            </DropdownMenuTrigger>
 
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger>
-              <SelectValue placeholder="All Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Status</SelectItem>
-              {Object.entries(statusConfig).map(([key, s]) => (
-                <SelectItem key={key} value={key}>
-                  {s.label}
-                </SelectItem>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem onClick={() => setServiceFilter("all")}>
+                All Services
+              </DropdownMenuItem>
+
+              {Object.entries(serviceLabels).map(([key, label]) => (
+                <DropdownMenuItem
+                  key={key}
+                  onClick={() => setServiceFilter(key)}
+                >
+                  {label}
+                </DropdownMenuItem>
               ))}
-            </SelectContent>
-          </Select>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Status Filter */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {statusFilter === "all"
+                  ? "All Status"
+                  : statusConfig[statusFilter]?.label}
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem onClick={() => setStatusFilter("all")}>
+                All Status
+              </DropdownMenuItem>
+
+              {Object.entries(statusConfig).map(([key, s]) => (
+                <DropdownMenuItem
+                  key={key}
+                  onClick={() => setStatusFilter(key)}
+                >
+                  {s.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -150,8 +175,8 @@ export default function Requests() {
       ) : (
         <div className={styles.tableWrapper}>
           <Table>
-            <TableHeader>
-              <TableRow className={styles.tableHeader}>
+            <TableHeader className={styles.tableHeader}>
+              <TableRow>
                 <TableHead>Lead</TableHead>
                 <TableHead>Service</TableHead>
                 <TableHead>Message</TableHead>
@@ -192,7 +217,9 @@ export default function Requests() {
                       </TableCell>
 
                       <TableCell>
-                        <p className={styles.message}>{r.message || "—"}</p>
+                        <p className={styles.message}>
+                          {r.message || "—"}
+                        </p>
                       </TableCell>
 
                       <TableCell>
@@ -212,7 +239,10 @@ export default function Requests() {
 
                       <TableCell>
                         <span className={styles.date}>
-                          {format(new Date(r.created_date), "MMM d, yyyy")}
+                          {format(
+                            new Date(r.created_date),
+                            "MMM d, yyyy"
+                          )}
                         </span>
                       </TableCell>
 

@@ -1,0 +1,44 @@
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  outline: none;
+}
+
+.switch:focus-visible {
+  box-shadow: 0 0 0 2px #6366f1;
+}
+
+/* Background states */
+.checked {
+  background-color: #4f46e5; /* indigo-600 */
+}
+
+.unchecked {
+  background-color: #e5e7eb; /* slate-200 */
+}
+
+/* Thumb */
+.thumb {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+/* Thumb positions */
+.thumbChecked {
+  transform: translateX(22px);
+}
+
+.thumbUnchecked {
+  transform: translateX(4px);
+}

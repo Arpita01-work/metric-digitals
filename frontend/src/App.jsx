@@ -1,17 +1,29 @@
+// App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import ScrollToTop from "./components/ScrollToTop";
+
+// Public pages
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import Portfolios from "./pages/Portfolios";
 import About from "./pages/About";
-import Footer from "./common/Footer";
-import Header from "./common/Header";
 import Services from "./pages/Services";
+import BlogDetail from "./pages/BlogDetail";
+
+import Header from "./common/Header";
+import Footer from "./common/Footer";
+
+// Admin layout
+import Layout from "./admin/Layout";
+
+// Admin pages
 import Dashboard from "./admin/pages/Dashboard";
 import Analytics from "./admin/pages/Analytics";
 import BlogEditor from "./admin/pages/BlogEditor";
-import Blogs from "./admin/pages/Blogs";
+import BlogsAdmin from "./admin/pages/BlogsAdmin";
 import Email from "./admin/pages/Email";
 import LeadDetail from "./admin/pages/LeadDetail";
 import Leads from "./admin/pages/Leads";
@@ -20,30 +32,182 @@ import Requests from "./admin/pages/Requests";
 import Settings from "./admin/pages/Settings";
 
 const App = () => {
-    return(
-        <Router>
-            <Header/>
-            <Routes>
-                <Route path='/' element={<Home/>} />
-                <Route path='contact/' element={<Contact/>} />
-                <Route path='blog/' element={<Blog/>} />
-                <Route path='portfolios/' element={<Portfolios/>} />
-                <Route path='about/' element={<About/>} />
-                <Route path='services/' element={<Services/>} />
-                <Route path='admin/' element={<Dashboard/>} />
-                <Route path='analytics/' element={<Analytics/>} />
-                <Route path='blogeditor/' element={<BlogEditor/>} />
-                <Route path='blogadmin/' element={<Blogs/>} />
-                <Route path='email/' element={<Email/>} />
-                <Route path='leaddetails/' element={<LeadDetail/>} />
-                <Route path='leads/' element={<Leads/>} />
-                <Route path='media/' element={<Media/>} />
-                <Route path='requests/' element={<Requests/>} />
-                <Route path='settings/' element={<Settings/>} />
-            </Routes>
-            <Footer/>
-        </Router>
-    )
-}
+  return (
+    <Router>
+      <ScrollToTop />
+
+      <Routes>
+        {/* ================= PUBLIC ROUTES ================= */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Home />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/contact"
+          element={
+            <>
+              <Header />
+              <Contact />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/blog"
+          element={
+            <>
+              <Header />
+              <Blog />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/blog/:id"
+          element={
+            <>
+              <Header />
+              <BlogDetail />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/portfolios"
+          element={
+            <>
+              <Header />
+              <Portfolios />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/about"
+          element={
+            <>
+              <Header />
+              <About />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/services"
+          element={
+            <>
+              <Header />
+              <Services />
+              <Footer />
+            </>
+          }
+        />
+
+        {/* ================= ADMIN ROUTES ================= */}
+        <Route
+          path="/admin"
+          element={
+            <Layout currentPageName="Dashboard">
+              <Dashboard />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/leads"
+          element={
+            <Layout currentPageName="Leads">
+              <Leads />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/requests"
+          element={
+            <Layout currentPageName="Requests">
+              <Requests />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/analytics"
+          element={
+            <Layout currentPageName="Analytics">
+              <Analytics />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/blogs"
+          element={
+            <Layout currentPageName="Blogs">
+              <BlogsAdmin />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/blogeditor"
+          element={
+            <Layout currentPageName="Blogs">
+              <BlogEditor />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/email"
+          element={
+            <Layout currentPageName="Email">
+              <Email />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/media"
+          element={
+            <Layout currentPageName="Media">
+              <Media />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/settings"
+          element={
+            <Layout currentPageName="Settings">
+              <Settings />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/lead/:id"
+          element={
+            <Layout currentPageName="Leads">
+              <LeadDetail />
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
