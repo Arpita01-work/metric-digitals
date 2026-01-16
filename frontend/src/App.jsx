@@ -205,6 +205,18 @@ const App = () => {
             </Layout>
           }
         />
+
+        {/* ✅ MUST BE LAST */}
+        <Route
+          path="*"
+          element={
+            <>
+              <Header />
+              <Home />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
