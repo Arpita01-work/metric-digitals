@@ -33,7 +33,7 @@ import Settings from "./admin/pages/Settings";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/metric-digitals">
       <ScrollToTop />
 
       <Routes>
